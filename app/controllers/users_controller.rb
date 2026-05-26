@@ -12,8 +12,8 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to new_session_path, notice: "Cadastro realizado. Faça login"
     else 
-      p @user.errors.full_messages
-      render :new, status: :unprocessable_entity, error: "Verifique os campos em vermelho!"
+      flash[:error] = "Verifique os campos em vermelho!"
+      render :new, status: :unprocessable_entity
     end
   end
 
