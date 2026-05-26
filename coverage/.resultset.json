@@ -1,8 +1,107 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/silvaclu/Workspace/printorganize/app/controllers/application_controller.rb": {
+      "/home/maximus/Workspace/printorganize/app/helpers/application_helper.rb": {
         "lines": [
+          1,
+          null
+        ]
+      },
+      "/home/maximus/Workspace/printorganize/app/models/user.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          22,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          22,
+          null,
+          null
+        ]
+      },
+      "/home/maximus/Workspace/printorganize/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/maximus/Workspace/printorganize/app/validators/email_validator.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          11,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/maximus/Workspace/printorganize/app/validators/password_validator.rb": {
+        "lines": [
+          1,
+          1,
+          11,
+          null,
+          11,
+          11,
+          null,
+          null,
+          1,
+          null,
+          1,
+          11,
+          1,
+          null,
+          null,
+          null,
+          1,
+          11,
+          4,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/maximus/Workspace/printorganize/app/channels/application_cable/connection.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/maximus/Workspace/printorganize/app/controllers/application_controller.rb": {
+        "lines": [
+          0,
           0,
           null,
           0,
@@ -10,14 +109,128 @@
         ],
         "branches": {}
       },
-      "/home/silvaclu/Workspace/printorganize/app/helpers/application_helper.rb": {
+      "/home/maximus/Workspace/printorganize/app/controllers/concerns/authentication.rb": {
         "lines": [
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
           0,
           0
         ],
         "branches": {}
       },
-      "/home/silvaclu/Workspace/printorganize/app/jobs/application_job.rb": {
+      "/home/maximus/Workspace/printorganize/app/controllers/passwords_controller.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/maximus/Workspace/printorganize/app/controllers/sessions_controller.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/maximus/Workspace/printorganize/app/jobs/application_job.rb": {
         "lines": [
           0,
           null,
@@ -29,7 +242,7 @@
         ],
         "branches": {}
       },
-      "/home/silvaclu/Workspace/printorganize/app/mailers/application_mailer.rb": {
+      "/home/maximus/Workspace/printorganize/app/mailers/application_mailer.rb": {
         "lines": [
           0,
           0,
@@ -38,7 +251,27 @@
         ],
         "branches": {}
       },
-      "/home/silvaclu/Workspace/printorganize/app/models/application_record.rb": {
+      "/home/maximus/Workspace/printorganize/app/mailers/passwords_mailer.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/maximus/Workspace/printorganize/app/models/current.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/maximus/Workspace/printorganize/app/models/session.rb": {
         "lines": [
           0,
           0,
@@ -47,6 +280,6 @@
         "branches": {}
       }
     },
-    "timestamp": 1778872618
+    "timestamp": 1779765114
   }
 }

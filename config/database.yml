@@ -2,7 +2,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV["PRINTORGANIZE_USERNAME"] %>
+  username: <%= ENV["PGUSER"] %>
   password: <%= ENV["PRINTORGANIZE_PASSWORD"] || ENV["PGPASSWORD"] %>
   host: localhost
 

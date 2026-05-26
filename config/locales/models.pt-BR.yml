@@ -1,0 +1,28 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      user:
+        one: Usuário
+        other: Usuários
+      session: sessão
+    attributes:
+      user:
+        email_address: Email 
+        password: Senha
+        password_confirmation: Confirmar senha
+      session:
+        email_address: Email 
+        password: Senha
+    errors:
+      models:
+        user:
+          attributes:
+            password_confirmation:
+              format: "%{message}"
+              confirmation: as senhas não são iguais
+  errors:
+    messages:
+      password_contains_whitespace: não pode conter espaços
+      password_not_complex: deve conter letras, números e caracteres especiais
+      invalid_format: formato inválido
