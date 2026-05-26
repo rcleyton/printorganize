@@ -24,6 +24,8 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   config.include FactoryBot::Syntax::Methods
+  
+  config.filter_run_when_matching :focus
 
   config.filter_rails_from_backtrace!
 end
