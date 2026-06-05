@@ -4,35 +4,32 @@
       "/home/maximus/Workspace/printorganize/app/helpers/application_helper.rb": {
         "lines": [
           1,
+          1,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
           null
         ]
       },
-      "/home/maximus/Workspace/printorganize/app/controllers/users_controller.rb": {
+      "/home/maximus/Workspace/printorganize/app/controllers/site_controller.rb": {
         "lines": [
           1,
           1,
-          1,
           null,
           1,
-          1,
-          null,
-          null,
-          1,
-          2,
-          null,
-          2,
-          2,
-          null,
-          0,
-          0,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          2,
-          null,
           null
         ]
       },
@@ -101,77 +98,6 @@
           1,
           0,
           0,
-          null,
-          null
-        ]
-      },
-      "/home/maximus/Workspace/printorganize/app/models/user.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null,
-          5,
-          null,
-          1,
-          1,
-          null,
-          1,
-          null,
-          1,
-          4,
-          null,
-          null
-        ]
-      },
-      "/home/maximus/Workspace/printorganize/app/models/application_record.rb": {
-        "lines": [
-          1,
-          1,
-          null
-        ]
-      },
-      "/home/maximus/Workspace/printorganize/app/validators/email_validator.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          2,
-          null,
-          0,
-          null,
-          null,
-          1,
-          null,
-          1,
-          0,
-          null,
-          null
-        ]
-      },
-      "/home/maximus/Workspace/printorganize/app/validators/password_validator.rb": {
-        "lines": [
-          1,
-          1,
-          2,
-          null,
-          2,
-          2,
-          null,
-          null,
-          1,
-          null,
-          1,
-          2,
-          0,
-          null,
-          null,
-          null,
-          1,
-          2,
-          0,
-          null,
           null,
           null
         ]
@@ -261,6 +187,36 @@
         ],
         "branches": {}
       },
+      "/home/maximus/Workspace/printorganize/app/controllers/users_controller.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
       "/home/maximus/Workspace/printorganize/app/jobs/application_job.rb": {
         "lines": [
           0,
@@ -293,6 +249,14 @@
         ],
         "branches": {}
       },
+      "/home/maximus/Workspace/printorganize/app/models/application_record.rb": {
+        "lines": [
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
       "/home/maximus/Workspace/printorganize/app/models/current.rb": {
         "lines": [
           0,
@@ -309,8 +273,75 @@
           0
         ],
         "branches": {}
+      },
+      "/home/maximus/Workspace/printorganize/app/models/user.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/maximus/Workspace/printorganize/app/validators/email_validator.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
+      "/home/maximus/Workspace/printorganize/app/validators/password_validator.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
       }
     },
-    "timestamp": 1779833086
+    "timestamp": 1780693809
   }
 }
