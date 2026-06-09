@@ -1,17 +1,70 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <% if alert = flash[:alert] %>
-    <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="alert"><%= alert %></p>
-  <% end %>
+<div class="min-h-screen flex overflow-hidden bg-slate-50">
+  <%# Renderização das mensagens de Alerta adaptadas ao layout moderno %>
+  <turbo-frame id="flash">
+    <% if alert = flash[:alert] %>
+      <div class="fixed top-4 right-4 z-50 py-3 px-5 bg-red-50 border border-red-200 text-red-600 font-medium rounded-xl shadow-lg" id="alert"><%= alert %></div>
+    <% end %>
+  </turbo-frame>
 
-  <h1 class="font-bold text-4xl">Forgot your password?</h1>
-
-  <%= form_with url: passwords_path, class: "contents" do |form| %>
-    <div class="my-5">
-      <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address], class: "block shadow-sm rounded-md border border-gray-400 focus:outline-solid focus:outline-blue-600 px-3 py-2 mt-2 w-full" %>
+  <%# Painel Lateral Esquerdo (Branding com Imagem de Impressora 3D) %>
+  <div
+    class="
+      hidden lg:flex lg:w-1/2 bg-gradient-to-br from-slate-950/90 via-slate-900/80
+      to-[#60c2a6]/40 items-center justify-center p-12 bg-cover bg-center bg-blend-multiply
+    "
+    style="background-image: url('<%= asset_path('printer.jpg') %>');"
+  >
+    <div class="text-center text-white max-w-md backdrop-blur-sm bg-slate-950/20 p-8 rounded-3xl border border-white/10">
+      <h1 class="text-5xl font-extrabold mb-6 tracking-tight drop-shadow-md">Bem-vindo(a) de volta</h1>
+      <p class="text-xl text-emerald-50 opacity-95 leading-relaxed drop-shadow">
+        Junte-se a milhares de makers que já automatizam seus cálculos de custos.
+      </p>
     </div>
+  </div>
 
-    <div class="inline">
-      <%= form.submit "Email reset instructions", class: "w-full sm:w-auto text-center rounded-lg px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+  <%# Painel de Formulário %>
+  <div class="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-12">
+    <div class="w-full max-w-md">
+      <div
+        class="
+          bg-white rounded-[2rem] border border-slate-100 shadow-xl p-6
+          sm:p-10 transition-all duration-300
+        "
+      >
+        <div class="text-center mb-8">
+          <h3 class="text-3xl font-bold text-slate-900 tracking-tight">
+            Recuperar senha
+          </h3>
+          <p class="text-slate-500 mt-2 text-sm">Digite seu e-mail para receber as instruções de redefinição</p>
+        </div>
+
+        <%= form_with url: passwords_path, class: "space-y-5" do |form| %>
+
+          <%# Email %>
+          <div class="space-y-1.5">
+            <%= form.label :email_address, "E-mail", class: "block text-sm font-semibold text-slate-700 ml-1" %>
+            <%= form.email_field :email_address,
+                  required: true,
+                  autofocus: true,
+                  autocomplete: "username",
+                  placeholder: "Digite seu email",
+                  value: params[:email_address],
+                  class: "w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white" %>
+          </div>
+
+          <div class="pt-2">
+            <%= form.submit "Enviar instruções por e-mail",
+                  class: "w-full py-3.5 bg-[#60c2a6] hover:bg-[#4eb094] text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg shadow-[#60c2a6]/20 active:scale-[0.99] cursor-pointer text-center block input-btn" %>
+          </div>
+        <% end %>
+
+        <div class="mt-6 text-center border-t border-slate-100 pt-5">
+          <%= link_to "Voltar para o login",
+                new_session_path,
+                class: "text-sm font-semibold text-slate-500 hover:text-[#60c2a6] transition-colors" %>
+        </div>
+
+      </div>
     </div>
-  <% end %>
+  </div>
 </div>
