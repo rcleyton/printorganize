@@ -1,3 +1,5 @@
 class Dashboard::HomeController < DashboardController
-  def index; end
+  def index
+    @printers = Printer.all
+  end
 end

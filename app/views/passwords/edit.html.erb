@@ -2,7 +2,13 @@
   <%# Renderização das mensagens de Alerta adaptadas ao layout moderno %>
   <turbo-frame id="flash">
     <% if alert = flash[:alert] %>
-      <div class="fixed top-4 right-4 z-50 py-3 px-5 bg-red-50 border border-red-200 text-red-600 font-medium rounded-xl shadow-lg" id="alert"><%= alert %></div>
+      <div
+        class="
+          fixed top-4 right-4 z-50 py-3 px-5 bg-red-50 border border-red-200 text-red-600
+          font-medium rounded-xl shadow-lg
+        "
+        id="alert"
+      ><%= alert %></div>
     <% end %>
   </turbo-frame>
 
@@ -10,14 +16,21 @@
   <div
     class="
       hidden lg:flex lg:w-1/2 bg-gradient-to-br from-slate-950/90 via-slate-900/80
-      to-[#60c2a6]/40 items-center justify-center p-12 bg-cover bg-center bg-blend-multiply
+      to-[#60c2a6]/40 items-center justify-center p-12 bg-cover bg-center
+      bg-blend-multiply
     "
     style="background-image: url('<%= asset_path('printer.jpg') %>');"
   >
-    <div class="text-center text-white max-w-md backdrop-blur-sm bg-slate-950/20 p-8 rounded-3xl border border-white/10">
+    <div
+      class="
+        text-center text-white max-w-md backdrop-blur-sm bg-slate-950/20 p-8 rounded-3xl
+        border border-white/10
+      "
+    >
       <h1 class="text-5xl font-extrabold mb-6 tracking-tight drop-shadow-md">Bem-vindo(a) de volta</h1>
       <p class="text-xl text-emerald-50 opacity-95 leading-relaxed drop-shadow">
-        Junte-se a milhares de makers que já automatizam seus cálculos de custos.
+        Junte-se a milhares de makers que já automatizam seus cálculos de
+        custos.
       </p>
     </div>
   </div>
@@ -27,8 +40,8 @@
     <div class="w-full max-w-md">
       <div
         class="
-          bg-white rounded-[2rem] border border-slate-100 shadow-xl p-6
-          sm:p-10 transition-all duration-300
+          bg-white rounded-[2rem] border border-slate-100 shadow-xl p-6 sm:p-10
+          transition-all duration-300
         "
       >
         <div class="text-center mb-8">
@@ -42,15 +55,20 @@
 
           <%# Nova Senha %>
           <div class="space-y-1.5" data-controller="password-visibility">
-            <%= form.label :password, "Nova senha", class: "block text-sm font-semibold text-slate-700 ml-1" %>
+            <%= form.label :password,
+                       "Nova senha",
+                       class: "block text-sm font-semibold text-slate-700 ml-1" %>
             <div class="relative">
               <%= form.password_field :password,
-                    required: true,
-                    autocomplete: "new-password",
-                    placeholder: "Digite a nova senha",
-                    maxlength: 72,
-                    class: "w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white",
-                    data: { password_visibility_target: "input" } %>
+                                  required: true,
+                                  autocomplete: "new-password",
+                                  placeholder: "Digite a nova senha",
+                                  maxlength: 72,
+                                  class:
+                                    "w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white",
+                                  data: {
+                                    password_visibility_target: "input",
+                                  } %>
 
               <button
                 type="button"
@@ -61,14 +79,41 @@
                 "
               >
                 <span data-password-visibility-target="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="size-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    />
                   </svg>
                 </span>
                 <span data-password-visibility-target="icon" class="hidden">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="size-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
+                    />
                   </svg>
                 </span>
               </button>
@@ -77,15 +122,20 @@
 
           <%# Confirmação da Nova Senha %>
           <div class="space-y-1.5" data-controller="password-visibility">
-            <%= form.label :password_confirmation, "Confirmar nova senha", class: "block text-sm font-semibold text-slate-700 ml-1" %>
+            <%= form.label :password_confirmation,
+                       "Confirmar nova senha",
+                       class: "block text-sm font-semibold text-slate-700 ml-1" %>
             <div class="relative">
               <%= form.password_field :password_confirmation,
-                    required: true,
-                    autocomplete: "new-password",
-                    placeholder: "Repita a nova senha",
-                    maxlength: 72,
-                    class: "w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white",
-                    data: { password_visibility_target: "input" } %>
+                                  required: true,
+                                  autocomplete: "new-password",
+                                  placeholder: "Repita a nova senha",
+                                  maxlength: 72,
+                                  class:
+                                    "w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white",
+                                  data: {
+                                    password_visibility_target: "input",
+                                  } %>
 
               <button
                 type="button"
@@ -96,14 +146,41 @@
                 "
               >
                 <span data-password-visibility-target="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="size-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    />
                   </svg>
                 </span>
                 <span data-password-visibility-target="icon" class="hidden">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="size-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
+                    />
                   </svg>
                 </span>
               </button>
@@ -112,14 +189,16 @@
 
           <div class="pt-2">
             <%= form.submit "Atualizar senha",
-                  class: "w-full py-3.5 bg-[#60c2a6] hover:bg-[#4eb094] text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg shadow-[#60c2a6]/20 active:scale-[0.99] cursor-pointer text-center block input-btn" %>
+                        class:
+                          "w-full py-3.5 bg-[#60c2a6] hover:bg-[#4eb094] text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg shadow-[#60c2a6]/20 active:scale-[0.99] cursor-pointer text-center block input-btn" %>
           </div>
         <% end %>
 
         <div class="mt-6 text-center border-t border-slate-100 pt-5">
           <%= link_to "Cancelar e voltar",
-                new_session_path,
-                class: "text-sm font-semibold text-slate-400 hover:text-slate-600 transition-colors" %>
+          new_session_path,
+          class:
+            "text-sm font-semibold text-slate-400 hover:text-slate-600 transition-colors" %>
         </div>
 
       </div>

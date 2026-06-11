@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_05_15_194412) do
+ActiveRecord::Schema[8.0].define(version: 2026_06_10_202820) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "printers", force: :cascade do |t|
+    t.string "printer_brand"
+    t.string "printer_model"
+    t.string "printer_name"
+    t.decimal "kilowatt_hour"
+    t.string "printer_ip"
+    t.string "serial"
+    t.string "access_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false

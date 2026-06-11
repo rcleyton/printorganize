@@ -1,0 +1,214 @@
+<div class="min-h-screen bg-slate-50 flex">
+
+  <%# (Insira o componente/partial do seu Sidebar aqui) %>
+
+  <div class="flex-1 flex flex-col min-w-0">
+    <%# (Insira o componente/partial do seu Header aqui) %>
+
+    <main
+      class="
+        flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto max-w-5xl mx-auto w-full space-y-6
+      "
+    >
+
+      <%# Topo: Navegação e Ações Rápidas %>
+      <div
+        class="
+          flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b
+          border-slate-200
+        "
+      >
+        <div>
+          <%= link_to dashboard_printers_path, class: "inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-800 transition-colors mb-2" do %>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="size-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              />
+            </svg>
+            Voltar para lista
+          <% end %>
+          <div class="flex items-center gap-3">
+            <h1 class="text-2xl font-bold text-slate-900 tracking-tight sm:text-3xl"><%= @printer.printer_name %></h1>
+            <span
+              class="
+                inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold
+                bg-slate-100 text-slate-600
+              "
+            >
+              Ociosa
+            </span>
+          </div>
+          <p class="text-slate-500 text-sm mt-1"><%= @printer.printer_brand %>
+            —
+            <%= @printer.printer_model %></p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <%= link_to edit_dashboard_printer_path(@printer), class: "inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 font-semibold rounded-xl shadow-sm transition-all text-sm flex-1 sm:flex-none" do %>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="size-4 text-slate-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+              />
+            </svg>
+            <span>Editar</span>
+          <% end %>
+
+          <%= button_to dashboard_printer_path(@printer), method: :delete, data: { confirm: "Tem certeza que deseja remover esta impressora?" }, class: "inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-red-50 hover:bg-red-100 text-red-600 font-semibold rounded-xl transition-all text-sm w-full sm:w-auto border border-red-100 cursor-pointer" do %>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="size-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+              />
+            </svg>
+            <span>Excluir</span>
+          <% end %>
+        </div>
+      </div>
+
+      <%# Grid de Conteúdo Principal %>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <%# Coluna da Esquerda: Especificações e Detalhes Técnicos %>
+        <div class="lg:col-span-2 space-y-6">
+
+          <%# Bloco 1: Ficha Técnica %>
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
+            <h3
+              class="
+                text-sm font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center
+                gap-2
+              "
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 5h10a2 2 0 012 2v10a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2z"
+                /></svg>
+              Especificações Gerais
+            </h3>
+
+            <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+              <div class="border-b border-slate-50 pb-2">
+                <dt class="text-xs font-semibold text-slate-400">Marca do Fabricante</dt>
+                <dd class="text-sm font-bold text-slate-800 mt-0.5"><%= @printer.printer_brand %></dd>
+              </div>
+
+              <div class="border-b border-slate-50 pb-2">
+                <dt class="text-xs font-semibold text-slate-400">Modelo do Equipamento</dt>
+                <dd class="text-sm font-bold text-slate-800 mt-0.5"><%= @printer.printer_model %></dd>
+              </div>
+
+              <div class="border-b border-slate-50 pb-2 sm:border-none sm:pb-0">
+                <dt class="text-xs font-semibold text-slate-400">Número de Série</dt>
+                <dd class="text-sm font-mono font-semibold text-slate-700 mt-0.5">
+                  <%= @printer.serial.present? ? @printer.serial : "Não informado" %>
+                </dd>
+              </div>
+
+              <div class="sm:border-none sm:pb-0">
+                <dt class="text-xs font-semibold text-slate-400">Consumo de Energia Nominal</dt>
+                <dd class="text-sm font-bold text-slate-800 mt-0.5">
+                  <%= if @printer.kilowatt_hour.present?
+                    "#{@printer.kilowatt_hour} kWh"
+                  else
+                    "Não calculado"
+                  end %>
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <%# Bloco 2: Últimas Impressões / Histórico (Design Preparado para Futuro Recurso) %>
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
+            <div class="flex items-center justify-between mb-4">
+              <h3
+                class="
+                  text-sm font-bold text-slate-400 uppercase tracking-wider flex items-center
+                  gap-2
+                "
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="size-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                ><path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  /></svg>
+                Histórico Recente
+              </h3>
+              <span class="text-[11px] text-slate-400 font-medium">Últimos 30 dias</span>
+            </div>
+
+            <%# Listagem de placeholders limpos %>
+            <div
+              class="
+                text-center py-8 text-slate-400 border border-dashed border-slate-100 rounded-xl
+              "
+            >
+              <p class="text-sm font-medium">Nenhum gcode ou projeto executado nesta máquina ainda.</p>
+            </div>
+          </div>
+        </div>
+
+        <%# Coluna da Direita: Conectividade, Status e Redes %>
+        <div class="space-y-6">
+
+          <%# Painel de Controle de Rede %>
+          <div
+            class="
+              bg-white rounded-2xl border border-slate-100 shadow-sm p-6 space-y-4
+            "
+          >
+            <h3
+              class="
+                text-sm font-bold text-slate-400 uppercase tracking-wider flex items-center
+                gap-2
+              "
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              ><path stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2" d="M5.636 18.364a9 9 0 010-12.728m12.728 0a9 9
+                0 010 12.728m-9.9

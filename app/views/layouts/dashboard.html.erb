@@ -17,8 +17,14 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    >
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    >
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
@@ -27,95 +33,114 @@
 
   <body>
     <div class="min-h-screen bg-slate-50 flex" data-controller="sidebar">
-  <turbo-frame id="flash">
-    <% if notice = flash[:notice] %>
-      <div class="fixed top-4 right-4 z-50 py-3 px-5 bg-emerald-50 border border-emerald-200 text-emerald-600 font-medium rounded-xl shadow-lg" id="notice"><%= notice %></div>
-    <% end %>
-  </turbo-frame>
-
-  <%# 1. SIDEBAR (Responsivo) %>
-  <aside 
-    class="fixed inset-y-0 left-0 z-40 w-64 bg-slate-900 text-slate-400 transform -translate-x-full lg:translate-x-0 lg:static lg:inset-0 transition-transform duration-300 ease-in-out flex flex-col justify-between border-r border-slate-800"
-    data-sidebar-target="menu"
-  >
-    <div>
-      <%# Logo / Branding %>
-      <div class="h-16 flex items-center px-6 border-b border-slate-800 gap-3">
-        <span class="text-white font-bold text-lg tracking-tight">Print & Organize<span class="text-[#60c2a6] text-xs ml-1 px-1.5 py-0.5 bg-slate-800 rounded">Lab</span></span>
-      </div>
-
-      <%# Navegação %>
-      <nav class="p-4 space-y-1">
-        <%= link_to "#", class: "flex items-center gap-3 px-4 py-3 text-white bg-slate-800/60 rounded-xl font-medium group transition-colors" do %>
-          <svg xmlns="http://www.w3.org/2000/svg" class="size-5 text-[#60c2a6]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-          </svg>
-          <span>Impressoras</span>
-        <% end %>
-
-        <%# Links futuros podem ser adicionados aqui mantendo a mesma estrutura desativada %>
-        <%= link_to "#", class: "flex items-center gap-3 px-4 py-3 hover:text-white hover:bg-slate-800/40 rounded-xl font-medium transition-colors opacity-50 cursor-not-allowed" do %>
-          <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-          </svg>
-          <span>Filamentos (Breve)</span>
-        <% end %>
-      </nav>
-    </div>
-
-    <%# Rodapé do Sidebar (User / Logout) %>
-    <div class="p-4 border-t border-slate-800">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <div class="size-9 bg-slate-800 rounded-full flex items-center justify-center text-white font-semibold text-sm border border-slate-700">
-            <%= current_user.email_address.first.upcase rescue 'U' %>
+      <aside
+        class="
+          fixed inset-y-0 left-0 z-40 w-64 bg-slate-900 text-slate-400 transform
+          -translate-x-full lg:translate-x-0 lg:static lg:inset-0 transition-transform
+          duration-300 ease-in-out flex flex-col justify-between border-r border-slate-800
+        "
+        data-sidebar-target="menu"
+      >
+        <div>
+          <div class="h-16 flex items-center px-6 border-b border-slate-800 gap-3">
+            <span class="text-white font-bold text-lg tracking-tight">Print & Organize</span>
           </div>
-          <div class="truncate max-w-[120px]">
-            <p class="text-sm font-medium text-white truncate"><%= current_user.email_address rescue 'Usuário' %></p>
+
+          <nav class="p-4 space-y-1">
+            <%= link_to dashboard_home_path, class: "flex gap-3 px-4 py-3 text-white bg-slate-800/60 rounded-xl font-medium group transition-colors" do %>
+              <span class="material-symbols-outlined size-5 text-[#60c2a6]">dashboard</span>
+              <span>Dashboard</span>
+            <% end %>
+
+            <%= link_to dashboard_printers_path, class: "flex gap-3 px-4 py-3 text-white bg-slate-800/60 rounded-xl font-medium group transition-colors" do %>
+              <span class="material-symbols-outlined size-5 text-[#60c2a6]">3d</span>
+              <span>Impressoras</span>
+            <% end %>
+          </nav>
+        </div>
+
+        <div class="p-4 border-t border-slate-800">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div
+                class="
+                  size-9 bg-slate-800 rounded-full flex items-center justify-center text-white
+                  font-semibold text-sm border border-slate-700
+                "
+              >
+                <%= begin
+                  current_user.email_address.first.upcase
+                rescue StandardError
+                  "U"
+                end %>
+              </div>
+              <div class="truncate max-w-[120px]">
+                <p class="text-sm font-medium text-white truncate"><%= begin
+                    current_user.email_address
+                  rescue StandardError
+                    "Usuário"
+                  end %></p>
+              </div>
+            </div>
+            <%= button_to session_path, method: :delete, class: "flex items-center text-slate-500 hover:text-red-400 p-1.5 rounded-lg hover:bg-slate-800 transition-colors" do %>
+              <span class="material-symbols-outlined">logout</span>
+            <% end %>
           </div>
         </div>
-        <%= button_to session_path, method: :delete, class: "text-slate-500 hover:text-red-400 p-1.5 rounded-lg hover:bg-slate-800 transition-colors" do %>
-          <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-          </svg>
-        <% end %>
+      </aside>
+
+      <div
+        class="fixed inset-0 z-30 bg-slate-900/40 backdrop-blur-sm hidden"
+        data-sidebar-target="overlay"
+        data-action="click->sidebar#toggle"
+      ></div>
+
+      <div class="flex-1 flex flex-col min-w-0">
+        <header
+          class="
+            h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4
+            sm:px-6 sticky top-0 z-20
+          "
+        >
+          <div class="flex items-center gap-4">
+            <button
+              type="button"
+              class="
+                lg:hidden p-2 text-slate-500 hover:bg-slate-100 rounded-xl transition-colors
+              "
+              data-action="sidebar#toggle"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+            <h2 class="text-xl font-bold text-slate-900 tracking-tight">Gerenciamento do Lab</h2>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <span
+              class="
+                text-xs font-semibold px-2.5 py-1 bg-[#60c2a6]/10 text-[#4eb094] rounded-full
+                hidden sm:inline-block
+              "
+            >Status: Online</span>
+          </div>
+        </header>
+        <main class="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
+          <%= yield %>
+        </main>
       </div>
     </div>
-  </aside>
-
-  <%# Backdrop para mobile ao abrir o menu %>
-  <div class="fixed inset-0 z-30 bg-slate-900/40 backdrop-blur-sm hidden" data-sidebar-target="overlay" data-action="click->sidebar#toggle"></div>
-
-  <%# ÁREA PRINCIPAL (Header + Conteúdo) %>
-  <div class="flex-1 flex flex-col min-w-0">
-    
-    <%# 2. HEADER %>
-    <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 sm:px-6 sticky top-0 z-20">
-      <div class="flex items-center gap-4">
-        <%# Botão Hambúrguer para Mobile %>
-        <button 
-          type="button" 
-          class="lg:hidden p-2 text-slate-500 hover:bg-slate-100 rounded-xl transition-colors"
-          data-action="sidebar#toggle"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-        <h2 class="text-xl font-bold text-slate-900 tracking-tight">Gerenciamento do Lab</h2>
-      </div>
-
-      <div class="flex items-center gap-4">
-        <span class="text-xs font-semibold px-2.5 py-1 bg-[#60c2a6]/10 text-[#4eb094] rounded-full hidden sm:inline-block">Status: Online</span>
-      </div>
-    </header>
-
-    <%# 3. CONTEÚDO CENTRAL %>
-    <main class="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
-      <%= yield %>  
-    </main>
-  </div>
-</div>
-    
   </body>
 </html>

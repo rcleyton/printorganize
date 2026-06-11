@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   namespace :dashboard do
     get "/home", to: "home#index"
+
+    resources :printers
   end
   
   get "up" => "rails/health#show", as: :rails_health_check
