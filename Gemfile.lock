@@ -347,8 +347,8 @@ GEM
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
     shellany (0.0.1)
-    shoulda-matchers (7.0.1)
-      activesupport (>= 7.1)
+    shoulda-matchers (8.0.1)
+      activesupport (>= 7.2)
     sidekiq (8.1.5)
       connection_pool (>= 3.0.0)
       json (>= 2.16.0)
@@ -443,7 +443,6 @@ DEPENDENCIES
   tzinfo-data
   web-console
 
-CHECKSUMS
   actioncable (8.0.5) sha256=01a1d1a48b63b1a643fae6b7b4eb2859af55f507b335fca9ab869a5c6742bb8b
   actionmailbox (8.0.5) sha256=2651a87c0cc3dd1243a3afe64c052e71138f99006b3a5d3fa519198735500054
   actionmailer (8.0.5) sha256=7918fac842cfe985ed21692f3d212c914a0c816e30e6fa68633177bb22f38561
@@ -574,7 +573,7 @@ CHECKSUMS
   ruby-progressbar (1.13.0) sha256=80fc9c47a9b640d6834e0dc7b3c94c9df37f08cb072b7761e4a71e22cff29b33
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
   shellany (0.0.1) sha256=0e127a9132698766d7e752e82cdac8250b6adbd09e6c0a7fbbb6f61964fedee7
-  shoulda-matchers (7.0.1) sha256=b4bfd8744c10e0a36c8ac1a687f921ee7e25ed529e50488d61b79a8688749c77
+  shoulda-matchers (8.0.1) sha256=5dbb46e5765b9da225111b085e0819e8c8a121ff94bba430a153eb1ea2c60288
   sidekiq (8.1.5) sha256=19821ff6031100c2317f72a5b8ab32304ca84f5acb5a2ef846ed1ec14144ab02
   simplecov (0.22.0) sha256=fe2622c7834ff23b98066bb0a854284b2729a569ac659f82621fc22ef36213a5
   simplecov-html (0.13.2) sha256=bd0b8e54e7c2d7685927e8d6286466359b6f16b18cb0df47b508e8d73c777246
