@@ -12,7 +12,7 @@ gem "rails", "~> 8.0.5"
 gem "redis"
 gem "sidekiq"
 gem "stimulus-rails"
-gem "tailwindcss-rails", "~> 4.4"
+gem "tailwindcss-rails", "~> 4.5"
 gem "thruster", require: false
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
