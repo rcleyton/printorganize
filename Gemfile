@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem "bcrypt", "~> 3.1.7"
 gem "bootsnap", require: false
+gem "erb_lint"
 gem "importmap-rails"
 gem "jbuilder"
 gem "kamal", require: false
