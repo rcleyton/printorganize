@@ -1,4 +1,4 @@
-class UsersController < ApplicationController 
+class UsersController < ApplicationController
   allow_unauthenticated_access only: %i[ new create]
   layout "signup"
 
@@ -6,12 +6,12 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def create 
+  def create
     @user = User.new(user_params)
 
     if @user.save
       redirect_to new_session_path, notice: "Cadastro realizado. Faça login"
-    else 
+    else
       flash[:error] = "Verifique os campos em vermelho!"
       render :new, status: :unprocessable_entity
     end

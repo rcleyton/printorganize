@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get  "/signup",    to: "users#new"
   post "/signup",    to: "users#create"
 
+  get "/calculator", to: "calculator#index"
+
   resource :session
   resources :passwords, param: :token
 
@@ -12,6 +14,6 @@ Rails.application.routes.draw do
 
     resources :printers
   end
-  
+
   get "up" => "rails/health#show", as: :rails_health_check
 end
