@@ -1,0 +1,115 @@
+<section class="relative overflow-hidden pt-32 pb-20 sm:pt-40">
+  <div
+    aria-hidden
+    class="
+      pointer-events-none absolute inset-x-0 -top-40 z-0 mx-auto h-[500px] max-w-4xl
+      rounded-full bg-primary/15 blur-[120px]
+    "
+  ></div>
+  <div
+    aria-hidden
+    class="
+      pointer-events-none absolute inset-0 z-0
+      bg-[radial-gradient(circle_at_center,transparent_55%,var(--background))]
+    "
+  ></div>
+
+  <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
+
+    <div class="mx-auto max-w-3xl text-center">
+
+      <div
+        class="
+          mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-border
+          bg-secondary/50 px-4 py-1.5 text-sm text-muted-foreground
+        "
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-sparkles h-3.5 w-3.5 text-primary"
+          aria-hidden="true"
+        ><path
+            d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"
+          ></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg>
+        Precificação inteligente para makers e lojas 3D
+      </div>
+
+      <h1
+        class="
+          text-balance text-4xl font-semibold leading-tight tracking-tight sm:text-5xl
+          md:text-6xl
+        "
+      >
+        Pare de chutar o preço dos seus
+        <span class="text-primary">produtos impressos em 3D</span>
+      </h1>
+
+      <p
+        class="
+          mx-auto mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground
+        "
+      >
+        O Print & Organize calcula o custo exato de cada peça — filamento,
+        tempo de máquina, energia e margem — e organiza toda a sua produção em
+        uma plataforma só.
+      </p>
+
+      <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <%= render(ButtonComponent.new(variant: :default, size: :lg, href: signup_path)) do %>
+          Começar grátis
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="
+              lucide lucide-arrow-right ml-1 h-4 w-4 transition-transform
+              group-hover:translate-x-0.5
+            "
+            aria-hidden="true"
+          ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        <% end %>
+        <%= render(ButtonComponent.new(variant: :outline, size: :lg, href: calculator_path)) do %>
+          Ver demonstração
+        <% end %>
+      </div>
+    </div>
+
+    <div class="relative mx-auto mt-16 max-w-5xl">
+      <div
+        aria-hidden
+        class="
+          pointer-events-none absolute -inset-x-10 -top-10 bottom-0 z-0 rounded-[2rem]
+          bg-primary/10 blur-3xl
+        "
+      ></div>
+      <div
+        class="
+          relative z-10 overflow-hidden rounded-xl border border-border bg-card shadow-2xl
+          shadow-black/40
+        "
+      >
+        <%= image_tag "dashboard-preview.png",
+        alt:
+          "Painel da Camada exibindo o cálculo de custos e a gestão de produtos impressos em 3D",
+        width: 1600,
+        height: 1000,
+        class: "w-full" %>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,88 +1,72 @@
-<div class="min-h-screen flex overflow-hidden bg-slate-50">
-  <%# Renderização das mensagens de Alerta adaptadas ao layout moderno %>
-  <turbo-frame id="flash">
-    <% if alert = flash[:alert] %>
-      <div
-        class="
-          fixed top-4 right-4 z-50 py-3 px-5 bg-red-50 border border-red-200 text-red-600
-          font-medium rounded-xl shadow-lg
-        "
-        id="alert"
-      ><%= alert %></div>
-    <% end %>
-  </turbo-frame>
-
-  <%# Painel Lateral Esquerdo (Branding com Imagem de Impressora 3D) %>
+<main
+  class="
+    relative flex min-h-svh items-center justify-center overflow-hidden px-4 py-16
+  "
+>
   <div
+    aria-hidden="true"
     class="
-      hidden lg:flex lg:w-1/2 bg-gradient-to-br from-slate-950/90 via-slate-900/80
-      to-[#60c2a6]/40 items-center justify-center p-12 bg-cover bg-center
-      bg-blend-multiply
+      pointer-events-none absolute inset-x-0 -top-32 z-0 mx-auto h-72 max-w-xl
+      rounded-full bg-primary/15 blur-[110px]
     "
-    style="background-image: url('<%= asset_path('printer.jpg') %>');"
-  >
-    <div
-      class="
-        text-center text-white max-w-md backdrop-blur-sm bg-slate-950/20 p-8 rounded-3xl
-        border border-white/10
-      "
-    >
-      <h1 class="text-5xl font-extrabold mb-6 tracking-tight drop-shadow-md">Bem-vindo(a) de volta</h1>
-      <p class="text-xl text-emerald-50 opacity-95 leading-relaxed drop-shadow">
-        Junte-se a milhares de makers que já automatizam seus cálculos de
-        custos.
-      </p>
-    </div>
-  </div>
+  ></div>
+  <div class="relative z-10 w-full max-w-md">
 
-  <%# Painel de Formulário %>
-  <div class="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-12">
-    <div class="w-full max-w-md">
+    <%= link_to root_path, class: "mb-8 flex items-center justify-center gap-2" do %>
       <div
         class="
-          bg-white rounded-[2rem] border border-slate-100 shadow-xl p-6 sm:p-10
-          transition-all duration-300
+          flex h-9 w-9 items-center justify-center rounded-lg bg-primary
+          text-primary-foreground
         "
       >
-        <div class="text-center mb-8">
-          <h3 class="text-3xl font-bold text-slate-900 tracking-tight">
-            Recuperar senha
-          </h3>
-          <p class="text-slate-500 mt-2 text-sm">Digite seu e-mail para receber as instruções de redefinição</p>
+        <%= image_tag "3d-printer.png", class: "h-5 w-5" %>
+      </div>
+      <span class="text-lg font-semibold tracking-tight">Print & Organize</span>
+    <% end %>
+
+    <div
+      class="
+        rounded-2xl border border-border bg-card/80 p-6 backdrop-blur-xl sm:p-8
+      "
+    >
+      <div>
+        <div class="text-center">
+          <h1 class="text-balance text-2xl font-semibold tracking-tight sm:text-3xl">Recuperar senha</h1>
+          <p class="mt-2 text-pretty leading-relaxed text-muted-foreground">Digite seu e-mail para receber as instruções de redefinição de
+            senha.</p>
         </div>
 
-        <%= form_with url: passwords_path, class: "space-y-5" do |form| %>
-
-          <%# Email %>
-          <div class="space-y-1.5">
-            <%= form.label :email_address,
-                       "E-mail",
-                       class: "block text-sm font-semibold text-slate-700 ml-1" %>
-            <%= form.email_field :email_address,
-                             required: true,
-                             autofocus: true,
-                             autocomplete: "username",
-                             placeholder: "Digite seu email",
-                             value: params[:email_address],
-                             class:
-                               "w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white" %>
+        <%= form_with url: passwords_path, class: "mt-8 flex flex-col gap-5" do |f| %>
+          <div class="flex flex-col gap-2">
+            <%= render(LabelComponent.new(form: f, attribute: :email_address)) %>
+            <%= render(
+              InputComponent.new(
+                form: f,
+                attribute: :email_address,
+                type: :email,
+                class: "peer",
+                placeholder: "seu@email.com.br",
+                required: true,
+              ),
+            ) %>
           </div>
 
-          <div class="pt-2">
-            <%= form.submit "Enviar instruções por e-mail",
-                        class:
-                          "w-full py-3.5 bg-[#60c2a6] hover:bg-[#4eb094] text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg shadow-[#60c2a6]/20 active:scale-[0.99] cursor-pointer text-center block input-btn" %>
-          </div>
+          <%= render(ButtonComponent.new(variant: :default)) do
+            "Enviar instruções por E-mail"
+          end %>
         <% end %>
 
-        <div class="mt-6 text-center border-t border-slate-100 pt-5">
-          <%= link_to "Voltar para o login",
-          new_session_path,
-          class:
-            "text-sm font-semibold text-slate-500 hover:text-[#60c2a6] transition-colors" %>
-        </div>
+        <p class="mt-6 text-center text-sm text-muted-foreground">
+          <%= link_to new_session_path, class: "font-medium text-primary transition-colors hover:underline" do %>
+            Voltar para login
+          <% end %>
+        </p>
 
       </div>
     </div>
   </div>
-</div>
+</main>
+
+<turbo-frame id="flash">
+  <%= render "shared/flash" %>
+</turbo-frame>

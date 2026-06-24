@@ -1,0 +1,5 @@
+<% if @form && @attribute %>
+  <%= @form.label(@attribute, content, **html_options) %>
+<% else %>
+  <%= content_tag(:label, content, **html_options) %>
+<% end %>

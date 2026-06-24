@@ -1,215 +1,107 @@
+<main
+  class="
+    relative flex min-h-svh items-center justify-center overflow-hidden px-4 py-16
+  "
+>
+  <div
+    aria-hidden="true"
+    class="
+      pointer-events-none absolute inset-x-0 -top-32 z-0 mx-auto h-72 max-w-xl
+      rounded-full bg-primary/15 blur-[110px]
+    "
+  ></div>
+  <div class="relative z-10 w-full max-w-md">
+
+    <%= link_to root_path, class: "mb-8 flex items-center justify-center gap-2" do %>
+      <div
+        class="
+          flex h-9 w-9 items-center justify-center rounded-lg bg-primary
+          text-primary-foreground
+        "
+      >
+        <%= image_tag "3d-printer.png", class: "h-5 w-5" %>
+      </div>
+      <span class="text-lg font-semibold tracking-tight">Print & Organize</span>
+    <% end %>
+
+    <div
+      class="
+        rounded-2xl border border-border bg-card/80 p-6 backdrop-blur-xl sm:p-8
+      "
+    >
+      <div>
+        <div class="text-center">
+          <h1 class="text-balance text-2xl font-semibold tracking-tight sm:text-3xl">Crie sua conta</h1>
+          <p class="mt-2 text-pretty leading-relaxed text-muted-foreground">Comece a precificar seus produtos impressos in 3D gratuitamente.</p>
+        </div>
+
+        <%= form_with(model: @user, url: signup_path, class: "mt-8 flex flex-col gap-5") do |f| %>
+
+          <div class="flex flex-col gap-2">
+            <%= render(LabelComponent.new(form: f, attribute: :email_address)) %>
+            <%= render(
+              InputComponent.new(
+                form: f,
+                attribute: :email_address,
+                type: :email,
+                class: "peer",
+                placeholder: "seu@email.com.br",
+                required: true,
+              ),
+            ) %>
+          </div>
+
+          <div class="flex flex-col gap-2" data-controller="password-visibility">
+            <%= render(LabelComponent.new(form: f, attribute: :password)) %>
+            <%= render(
+              InputComponent.new(
+                form: f,
+                attribute: :password,
+                type: :password,
+                toggleable: true,
+                class: "peer",
+                placeholder: "Crie uma senha forte",
+                required: true,
+              ),
+            ) %>
+          </div>
+
+          <div class="flex flex-col gap-2" data-controller="password-visibility">
+            <%= render(LabelComponent.new(form: f, attribute: :password_confirmation)) %>
+            <%= render(
+              InputComponent.new(
+                form: f,
+                attribute: :password_confirmation,
+                type: :password,
+                toggleable: true,
+                class: "peer",
+                placeholder: "Repita sua senha",
+                required: true,
+              ),
+            ) %>
+          </div>
+
+          <%= render(ButtonComponent.new(variant: :default)) { "Criar conta" } %>
+        <% end %>
+
+        <p class="mt-6 text-center text-sm text-muted-foreground">
+          Já tem uma conta?
+          <%= link_to new_session_path, class: "font-medium text-primary transition-colors hover:underline" do %>
+            Entrar
+          <% end %>
+        </p>
+      </div>
+    </div>
+
+    <p class="mt-6 text-center text-xs leading-relaxed text-muted-foreground">
+      Ao criar uma conta, você concorda com nossos
+      <a href="#" class="text-foreground/80 transition-colors hover:text-foreground">Termos de Uso</a>
+      e
+      <a href="#" class="text-foreground/80 transition-colors hover:text-foreground">Política de Privacidade</a>.
+    </p>
+  </div>
+</main>
+
 <turbo-frame id="flash">
   <%= render "shared/flash" %>
 </turbo-frame>
-
-<div class="min-h-screen flex overflow-hidden bg-slate-50">
-  <div
-    class="
-      hidden lg:flex lg:w-1/2 bg-gradient-to-br from-slate-950/90 via-slate-900/80
-      to-[#60c2a6]/40 items-center justify-center p-12 bg-cover bg-center
-      bg-blend-multiply
-    "
-    style="background-image: url('<%= asset_path('printer.jpg') %>');"
-  >
-    <div
-      class="
-        text-center text-white max-w-md backdrop-blur-sm bg-slate-950/20 p-8 rounded-3xl
-        border border-white/10
-      "
-    >
-      <h1 class="text-5xl font-extrabold mb-6 tracking-tight drop-shadow-md">Bem-vindo(a) ao Print & Organize</h1>
-      <p class="text-xl text-emerald-50 opacity-95 leading-relaxed drop-shadow">
-        Junte-se a milhares de makers que já automatizam seus cálculos de
-        custos.
-      </p>
-    </div>
-  </div>
-
-  <div class="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-12">
-    <div class="w-full max-w-md">
-      <div
-        class="
-          bg-white rounded-[2rem] border border-slate-100 shadow-xl p-6 sm:p-10
-          transition-all duration-300
-        "
-      >
-        <div class="text-center mb-8">
-          <h3 class="text-3xl font-bold text-slate-900 tracking-tight">
-            Criar conta
-          </h3>
-          <p class="text-slate-500 mt-2 text-sm">Crie sua conta para gerenciar seu lab</p>
-        </div>
-
-        <%= form_with(model: @user, url: signup_path, class: "space-y-5") do |f| %>
-          <div class="space-y-1.5">
-            <%= f.label :email_address, class: "block text-sm font-semibold text-slate-700 ml-1" %>
-            <%= f.email_field :email_address,
-                          placeholder: "Digite seu email",
-                          required: true,
-                          class:
-                            "w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white #{"border-red-500 focus:ring-red-500" if @user.errors[:email_address].any?}" %>
-            <% if @user.errors[:email_address].any? %>
-              <p class="text-xs text-red-500 font-medium mt-1 ml-1"><%= @user.errors[:email_address].first %></p>
-            <% end %>
-          </div>
-
-          <div class="space-y-1.5" data-controller="password-visibility">
-            <%= f.label :password, class: "block text-sm font-semibold text-slate-700 ml-1" %>
-            <div class="relative">
-              <%= f.password_field :password,
-                               placeholder: "Digite sua senha",
-                               class:
-                                 "w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white #{"border-red-500 focus:ring-red-500" if @user.errors[:password].any?}",
-                               data: {
-                                 password_visibility_target: "input",
-                               } %>
-
-              <button
-                type="button"
-                data-action="password-visibility#toggle"
-                class="
-                  absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400
-                  hover:text-[#60c2a6] transition-colors
-                "
-              >
-                <span data-password-visibility-target="icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="size-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                    />
-                  </svg>
-                </span>
-                <span data-password-visibility-target="icon" class="hidden">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="size-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
-                    />
-                  </svg>
-                </span>
-              </button>
-            </div>
-            <% if @user.errors[:password].any? %>
-              <p class="text-xs text-red-500 font-medium mt-1 ml-1"><%= @user.errors[:password].first %></p>
-            <% end %>
-          </div>
-
-          <div class="space-y-1.5" data-controller="password-visibility">
-            <%= f.label :password_confirmation,
-                    class: "block text-sm font-semibold text-slate-700 ml-1" %>
-            <div class="relative">
-              <%= f.password_field :password_confirmation,
-                               placeholder: "Repita a senha",
-                               class:
-                                 "w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white #{"border-red-500 focus:ring-red-500" if @user.errors[:password_confirmation].any?}",
-                               data: {
-                                 password_visibility_target: "input",
-                               } %>
-
-              <button
-                type="button"
-                data-action="password-visibility#toggle"
-                class="
-                  absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400
-                  hover:text-[#60c2a6] transition-colors
-                "
-              >
-                <span data-password-visibility-target="icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="size-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                    />
-                  </svg>
-                </span>
-                <span data-password-visibility-target="icon" class="hidden">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="size-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
-                    />
-                  </svg>
-                </span>
-              </button>
-            </div>
-            <% if @user.errors[:password_confirmation].any? %>
-              <p class="text-xs text-red-500 font-medium mt-1 ml-1"><%= @user.errors[:password_confirmation].to_sentence %></p>
-            <% end %>
-          </div>
-
-          <%# Termos de Serviço %>
-          <div class="py-1">
-            <div class="flex items-start gap-3">
-              <%# f.check_box :terms_of_service, class: "h-4 w-4 text-[#60c2a6] focus:ring-[#60c2a6] border-slate-300 rounded transition-all cursor-pointer mt-0.5" %>
-              <label for="user_terms_of_service" class="text-sm text-slate-600 leading-tight">
-                <%# Eu li e aceito os link_to "Termos de Uso", terms_url(**public_url_options), target: "_blank", class: "text-[#60c2a6] font-bold hover:underline" %>
-              </label>
-            </div>
-            <% if @user.errors[:terms_of_service].any? %>
-              <p class="text-xs text-red-500 font-medium mt-2 ml-7">
-                <%= User.human_attribute_name(:terms_of_service) %>
-                <%= @user.errors[:terms_of_service].first %>
-              </p>
-            <% end %>
-          </div>
-
-          <%= f.submit "Criar conta",
-                   class:
-                     "w-full py-3.5 bg-[#60c2a6] hover:bg-[#4eb094] text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg shadow-[#60c2a6]/20 active:scale-[0.99] cursor-pointer text-center block input-btn" %>
-        <% end %>
-
-        <div class="mt-6 text-center border-t border-slate-100 pt-5">
-          <%= link_to "Já tem uma conta? Entre aqui",
-          new_session_path,
-          class:
-            "text-sm font-semibold text-slate-500 hover:text-[#60c2a6] transition-colors" %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
