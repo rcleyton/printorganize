@@ -1,0 +1,137 @@
+<turbo-frame id="flash">
+  <%= render "shared/flash" %>
+</turbo-frame>
+
+<div class="min-h-screen bg-slate-50 flex">
+  <div class="flex-1 flex flex-col min-w-0">
+    <div class="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto max-w-6xl mx-auto w-full">
+
+      <div class="sm:flex sm:items-center sm:justify-between mb-8">
+        <div>
+          <h1 class="text-2xl font-bold text-slate-900 tracking-tight sm:text-3xl">Estoque de Filamentos</h1>
+          <p class="text-slate-500 mt-1 text-sm">Gerencie todos os filamentos disponíveis no seu laboratório.</p>
+        </div>
+        <div class="mt-4 sm:mt-0">
+          <%= link_to new_dashboard_filament_path, class: "inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#60c2a6] hover:bg-[#4eb094] text-white font-semibold rounded-xl shadow-sm hover:shadow transition-all text-sm w-full sm:w-auto" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            <span>Novo Filamento</span>
+          <% end %>
+        </div>
+      </div>
+
+      <% if @filaments.any? %>
+        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-slate-50/75 border-b border-slate-100 text-slate-400 text-xs font-bold uppercase tracking-wider">
+                  <th class="px-6 py-4">Filamento</th>
+                  <th class="px-6 py-4 hidden sm:table-cell">Marca</th>
+                  <th class="px-6 py-4 hidden sm:table-cell">Material</th>
+                  <th class="px-6 py-4 hidden md:table-cell">Peso Inicial</th>
+                  <th class="px-6 py-4 hidden md:table-cell">Preço / Grama</th>
+                  <th class="px-6 py-4 hidden lg:table-cell">Preço Pago</th>
+                  <th class="px-6 py-4 text-right">Ações</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-50 text-sm text-slate-600">
+                <% @filaments.each do |filament| %>
+                  <tr class="hover:bg-slate-50/50 transition-colors group">
+                    <td class="px-6 py-4">
+                      <div class="flex items-center gap-3">
+                        <div
+                          class="size-10 rounded-xl flex items-center justify-center border border-slate-200/60
+                                 group-hover:border-[#60c2a6]/20 transition-colors shrink-0"
+                          style="background-color: <%= filament.color.start_with?('#') ? filament.color + '22' : '#f1f5f9' %>;"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" class="size-5 text-slate-400 group-hover:text-[#4eb094]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                          </svg>
+                        </div>
+                        <div class="truncate max-w-[160px] sm:max-w-none">
+                          <%= link_to dashboard_filament_path(filament), class: "font-bold text-slate-900 hover:text-[#4eb094] transition-colors block" do %>
+                            <%= filament.name %>
+                          <% end %>
+                          <span class="text-xs text-slate-400 font-medium block mt-0.5"><%= filament.color %></span>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td class="px-6 py-4 hidden sm:table-cell font-medium text-slate-700">
+                      <%= filament.brand %>
+                    </td>
+
+                    <td class="px-6 py-4 hidden sm:table-cell">
+                      <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600 uppercase tracking-wide">
+                        <%= filament.material_type.upcase %>
+                      </span>
+                    </td>
+
+                    <td class="px-6 py-4 hidden md:table-cell font-medium text-slate-700">
+                      <%= number_with_precision(filament.initial_weight, precision: 0, delimiter: ".") %> g
+                    </td>
+
+                    <td class="px-6 py-4 hidden md:table-cell font-medium text-slate-700">
+                      <%= filament.price_per_gram.present? ? "#{number_to_currency(filament.price_per_gram, unit: "R$", precision: 4, separator: ",", delimiter: ".")} / g" : "—" %>
+                    </td>
+
+                    <td class="px-6 py-4 hidden lg:table-cell font-medium text-slate-700">
+                      <%= number_to_currency(filament.purchase_price, unit: "R$", separator: ",", delimiter: ".") %>
+                    </td>
+
+                    <td class="px-6 py-4 text-right whitespace-nowrap">
+                      <div class="flex items-center justify-end gap-1.5">
+
+                        <%= link_to dashboard_filament_path(filament), title: "Visualizar", class: "p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-all" do %>
+                          <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                          </svg>
+                        <% end %>
+
+                        <%= link_to edit_dashboard_filament_path(filament), title: "Editar", class: "p-2 text-slate-400 hover:text-[#4eb094] hover:bg-emerald-50/50 rounded-lg transition-all" do %>
+                          <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                          </svg>
+                        <% end %>
+
+                        <%= button_to dashboard_filament_path(filament), method: :delete,
+                              data: { confirm: "Deseja mesmo remover #{filament.name} do estoque?" },
+                              title: "Excluir",
+                              class: "p-2 text-slate-400 hover:text-red-600 hover:bg-red-50/50 rounded-lg transition-all cursor-pointer inline-block" do %>
+                          <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                        <% end %>
+
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      <% else %>
+        <div class="bg-white border border-dashed border-slate-200 rounded-[2rem] p-12 text-center max-w-xl mx-auto mt-12 shadow-sm">
+          <div class="size-16 bg-slate-50 text-slate-400 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-slate-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900">Nenhum filamento cadastrado</h3>
+          <p class="text-slate-500 text-sm mt-1 max-w-xs mx-auto">Comece registrando o primeiro rolo de filamento do seu estoque.</p>
+          <div class="mt-6">
+            <%= link_to "Adicionar Filamento", new_dashboard_filament_path,
+                class: "inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#60c2a6] hover:bg-[#4eb094] text-white font-bold rounded-xl transition-all shadow-md text-sm cursor-pointer" %>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

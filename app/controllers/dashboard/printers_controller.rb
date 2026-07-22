@@ -1,8 +1,8 @@
-class Dashboard::PrintersController < DashboardController 
-  before_action :set_printer, only: [:show, :edit, :update, :destroy]
+class Dashboard::PrintersController < DashboardController
+  before_action :set_printer, only: %i[ show edit update destroy ]
 
-  def index 
-    @printers = Printer.all
+  def index
+    @printers = current_user.printers
   end
 
   def show; end
@@ -12,10 +12,11 @@ class Dashboard::PrintersController < DashboardController
   end
 
   def create
-    @printer = Printer.create(printer_params)
+    @printer = Printer.new(printer_params)
+    @printer.user = current_user
     if @printer.save
       redirect_to dashboard_printers_path, notice: "Impressora criada com sucesso"
-    else 
+    else
       flash[:error] = "Verifique os campos em vermelho!"
       render :new, status: :unprocessable_entity
     end
@@ -24,8 +25,11 @@ class Dashboard::PrintersController < DashboardController
   def edit; end
 
   def update
-    @printer.update(printer_params)
-    redirect_to dashboard_printers_path, notice: "Impressora atualizada"
+    if @printer.update(printer_params)
+      redirect_to dashboard_printers_path, notice: "Impressora atualizada"
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -37,17 +41,17 @@ class Dashboard::PrintersController < DashboardController
 
   def printer_params
     params.require(:printer).permit(
-      :printer_brand, 
-      :printer_model, 
-      :printer_name, 
-      :kilowatt_hour, 
-      :printer_ip, 
-      :serial, 
+      :printer_brand,
+      :printer_model,
+      :printer_name,
+      :kilowatt_hour,
+      :printer_ip,
+      :serial,
       :access_code
     )
   end
 
   def set_printer
-    @printer = Printer.find(params[:id])
+    @printer = current_user.printers.find(params[:id])
   end
 end

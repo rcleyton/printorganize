@@ -1,0 +1,67 @@
+<%= form_with model: [:dashboard, filament], local: true, class: "space-y-6" do |f| %>
+  <% if filament.errors.any? %>
+    <div class="p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm space-y-1">
+      <p class="font-bold">Verifique os campos abaixo antes de salvar:</p>
+      <ul class="list-disc list-inside opacity-90">
+        <% filament.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">1. Informações do Filamento</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="space-y-1.5 sm:col-span-2">
+        <%= f.label :name, "Nome do Filamento", class: "block text-sm font-semibold text-slate-700" %>
+        <%= f.text_field :name, placeholder: "Ex: PLA Premium Preto 1kg", required: true,
+            class: "w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white" %>
+      </div>
+
+      <div class="space-y-1.5">
+        <%= f.label :brand, "Marca", class: "block text-sm font-semibold text-slate-700" %>
+        <%= f.text_field :brand, placeholder: "Ex: eSUN, Creality, Voolt3D", required: true,
+            class: "w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white" %>
+      </div>
+
+      <div class="space-y-1.5">
+        <%= f.label :material_type, "Tipo do Material", class: "block text-sm font-semibold text-slate-700" %>
+        <%= f.select :material_type, Filament.material_types.keys.map { |k| [k.upcase, k] }, { include_blank: "Selecione o material" }, required: true,
+            class: "w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all bg-slate-50/50 focus:bg-white" %>
+      </div>
+
+      <div class="space-y-1.5">
+        <%= f.label :color, "Cor", class: "block text-sm font-semibold text-slate-700" %>
+        <%= f.text_field :color, placeholder: "Ex: Preto, Vermelho, #FF0000", required: true,
+            class: "w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white" %>
+      </div>
+    </div>
+  </div>
+
+  <hr class="border-slate-100">
+
+  <div>
+    <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">2. Peso & Custo</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="space-y-1.5">
+        <%= f.label :initial_weight, "Peso Inicial (em gramas)", class: "block text-sm font-semibold text-slate-700" %>
+        <%= f.number_field :initial_weight, step: :any, placeholder: "Ex: 1000", required: true,
+            class: "w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white" %>
+      </div>
+
+      <div class="space-y-1.5">
+        <%= f.label :purchase_price, "Preço Pago (R$)", class: "block text-sm font-semibold text-slate-700" %>
+        <%= f.number_field :purchase_price, step: :any, placeholder: "Ex: 89.90", required: true,
+            class: "w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="pt-4 flex items-center justify-end gap-3 border-t border-slate-100">
+    <%= link_to "Cancelar", dashboard_filaments_path,
+        class: "px-5 py-2.5 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors font-semibold text-sm" %>
+    <%= f.submit "Salvar Filamento",
+        class: "px-5 py-2.5 bg-[#60c2a6] hover:bg-[#4eb094] text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg shadow-[#60c2a6]/10 active:scale-[0.99] cursor-pointer text-sm" %>
+  </div>
+<% end %>

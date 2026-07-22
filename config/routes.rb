@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get "/home", to: "home#index"
 
     resources :printers
+    resources :filaments
   end
 
   get "up" => "rails/health#show", as: :rails_health_check

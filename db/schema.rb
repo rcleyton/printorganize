@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_06_10_202820) do
+ActiveRecord::Schema[8.0].define(version: 2026_07_22_162028) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "filaments", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "material_type", null: false
+    t.string "color", null: false
+    t.decimal "initial_weight", precision: 10, scale: 2, null: false
+    t.decimal "purchase_price", precision: 10, scale: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "brand", default: "", null: false
+    t.decimal "price_per_gram", precision: 10, scale: 4
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_filaments_on_user_id"
+  end
 
   create_table "printers", force: :cascade do |t|
     t.string "printer_brand"
@@ -24,6 +38,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_06_10_202820) do
     t.string "access_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_printers_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -43,5 +59,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_06_10_202820) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "filaments", "users"
+  add_foreign_key "printers", "users"
   add_foreign_key "sessions", "users"
 end
