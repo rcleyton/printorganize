@@ -1,159 +1,43 @@
-<%= form_with model: [:dashboard, @printer], local: true, class: "space-y-6" do |f| %>
-  <% if @printer.errors.any? %>
-    <div
-      class="
-        p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm space-y-1
-      "
-    >
-      <p class="font-bold">Verifique os campos abaixo antes de salvar:</p>
-      <ul class="list-disc list-inside opacity-90">
-        <% @printer.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<%= form_with model: [:dashboard, @printer], local: true, class: "mt-8 rounded-xl border border-border bg-card p-6 sm:p-8" do |f| %>
+
+  <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+    <div class="flex flex-col gap-2 sm:col-span-2">
+      <%= render(LabelComponent.new(form: f, attribute: :printer_name)) %>
+      <%= render(InputComponent.new(form: f, attribute: :printer_name, placeholder: "Ex: Ender 3 Esquerda, Bambu Principal" )) %>
     </div>
-  <% end %>
-
-  <div>
-    <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">1. Identificação do Equipamento</h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <div class="space-y-1.5 sm:col-span-2">
-        <%= f.label :printer_name,
-                "Nome Amigável / Apelido",
-                class: "block text-sm font-semibold text-slate-700" %>
-        <%= f.text_field :printer_name,
-                     placeholder: "Ex: Ender 3 Esquerda, Bambu Principal",
-                     required: true,
-                     class:
-                       "w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white" %>
-      </div>
-
-      <div class="space-y-1.5">
-        <%= f.label :printer_brand,
-                "Marca",
-                class: "block text-sm font-semibold text-slate-700" %>
-        <%= f.text_field :printer_brand,
-                     placeholder: "Ex: Creality, Prusa, Bambu Lab",
-                     required: true,
-                     class:
-                       "w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white" %>
-      </div>
-
-      <div class="space-y-1.5">
-        <%= f.label :printer_model,
-                "Modelo",
-                class: "block text-sm font-semibold text-slate-700" %>
-        <%= f.text_field :printer_model,
-                     placeholder: "Ex: Ender 3 S1 Pro, MK4",
-                     required: true,
-                     class:
-                       "w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white" %>
-      </div>
+    <div class="flex flex-col gap-2">
+      <%= render(LabelComponent.new(form: f, attribute: :printer_brand)) %>
+      <%= render(InputComponent.new(form: f, attribute: :printer_brand, placeholder: "Ex: Creality, Prusa, Bambu Lab")) %>
+    </div>
+    <div class="flex flex-col gap-2">
+      <%= render(LabelComponent.new(form: f, attribute: :printer_model)) %>
+      <%= render(InputComponent.new(form: f, attribute: :printer_model, placeholder: "Ex: Ender 3 S1 Pro, MK4")) %>
+    </div>
+    <div class="flex flex-col gap-2">
+      <%= render(LabelComponent.new(form: f, attribute: :printer_ip)) %>
+      <%= render(InputComponent.new(form: f, attribute: :printer_ip, placeholder: "Ex: 192.168.1.155")) %>
+    </div>
+    <div class="flex flex-col gap-2">
+      <%= render(LabelComponent.new(form: f, attribute: :kilowatt_hour)) %>
+      <%= render(InputComponent.new(form: f, attribute: :kilowatt_hour, placeholder: "Ex: 0.35")) %>
+    </div>
+    <div class="flex flex-col gap-2 sm:col-span-2">
+      <%= render(LabelComponent.new(form: f, attribute: :serial)) %>
+      <%= render(InputComponent.new(form: f, attribute: :serial, placeholder: "Ex.: CR-E3V3-2024-00871")) %>
+    </div>
+    <div class="flex flex-col gap-2 sm:col-span-2">
+      <%= render(LabelComponent.new(form: f, attribute: :access_code)) %>
+      <%= render(InputComponent.new(form: f, attribute: :access_code, placeholder: "Ex: a9b34b21-8038-4f21-9619-d92d3f237d4e")) %>
+      <p class="text-xs text-muted-foreground">Usada para conectar a impressora à plataforma. Mantenha em sigilo.</p>
     </div>
   </div>
 
-  <hr class="border-slate-100">
 
-  <div>
-    <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">2. Conectividade & Energia</h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <div class="space-y-1.5">
-        <%= f.label :printer_ip,
-                "Endereço IP (Opcional)",
-                class: "block text-sm font-semibold text-slate-700" %>
-        <%= f.text_field :printer_ip,
-                     placeholder: "Ex: 192.168.1.50",
-                     class:
-                       "w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white" %>
-      </div>
-
-      <div class="space-y-1.5">
-        <%= f.label :kilowatt_hour,
-                "Consumo Estimado (kWh)",
-                class: "block text-sm font-semibold text-slate-700" %>
-        <%= f.number_field :kilowatt_hour,
-                       step: :any,
-                       placeholder: "Ex: 0.35",
-                       class:
-                         "w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white" %>
-      </div>
-
-      <div class="space-y-1.5">
-        <%= f.label :serial,
-                "Número de Série",
-                class: "block text-sm font-semibold text-slate-700" %>
-        <%= f.text_field :serial,
-                     placeholder: "Código serial do fabricante",
-                     class:
-                       "w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white" %>
-      </div>
-
-      <div class="space-y-1.5" data-controller="password-visibility">
-        <%= f.label :access_code,
-                "Código de Acesso / API Key",
-                class: "block text-sm font-semibold text-slate-700" %>
-        <div class="relative">
-          <%= f.password_field :access_code,
-                           placeholder: "Token de conexão",
-                           data: {
-                             password_visibility_target: "input",
-                           },
-                           class:
-                             "w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#60c2a6] focus:border-transparent outline-none transition-all placeholder:text-slate-400 bg-slate-50/50 focus:bg-white" %>
-          <button
-            type="button"
-            data-action="password-visibility#toggle"
-            class="
-              absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400
-              hover:text-[#60c2a6] transition-colors
-            "
-          >
-            <span data-password-visibility-target="icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="size-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              ><path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                /><path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                /></svg>
-            </span>
-            <span data-password-visibility-target="icon" class="hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="size-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              ><path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
-                /></svg>
-            </span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="pt-4 flex items-center justify-end gap-3 border-t border-slate-100">
-    <%= link_to "Cancelar",
-    dashboard_printers_path,
-    class:
-      "px-5 py-2.5 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors font-semibold text-sm" %>
-    <%= f.submit "Salvar Impressora",
-             class:
-               "px-5 py-2.5 bg-[#60c2a6] hover:bg-[#4eb094] text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg shadow-[#60c2a6]/10 active:scale-[0.99] cursor-pointer text-sm" %>
+  <div class="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+    <%= link_to "Cancelar", dashboard_printers_path, class:
+      "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-secondary text-secondary-foreground hover:bg-secondary/80 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2" %>
+    <%= f.submit class: "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground [a]:hover:bg-primary/80 h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-save h-4 w-4" aria-hidden="true"><path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path><path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"></path><path d="M7 3v4a1 1 0 0 0 1 1h7"></path></svg>
+    <% end %>
   </div>
 <% end %>
