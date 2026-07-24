@@ -69,3 +69,10 @@
     @apply font-sans;
   }
 }
+
+/* Force legible colors on native <select> options using theme variables */
+select option,
+select optgroup {
+  background-color: var(--popover);
+  color: var(--popover-foreground);
+}

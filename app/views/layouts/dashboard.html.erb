@@ -32,113 +32,78 @@
   </head>
 
   <body>
-    <div class="min-h-screen bg-slate-50 flex" data-controller="sidebar">
-      <aside
-        class="
-          fixed inset-y-0 left-0 z-40 w-64 bg-slate-900 text-slate-400 transform
-          -translate-x-full lg:translate-x-0 lg:static lg:inset-0 transition-transform
-          duration-300 ease-in-out flex flex-col justify-between border-r border-slate-800
-        "
-        data-sidebar-target="menu"
-      >
-        <div>
-          <div class="h-16 flex items-center px-6 border-b border-slate-800 gap-3">
-            <span class="text-white font-bold text-lg tracking-tight">Print & Organize</span>
+    <div class="flex min-h-screen bg-background">
+      <aside class="hidden w-64 shrink-0 flex-col border-r border-border bg-card/40 md:flex">
+        <div class="flex h-16 items-center gap-2 border-b border-border px-6">
+          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+            <%= image_tag "3d-printer.png", class: "h-5 w-5" %>
           </div>
-
-          <nav class="p-4 space-y-1">
-            <%= link_to dashboard_home_path, class: "flex gap-3 px-4 py-3 text-white bg-slate-800/60 rounded-xl font-medium group transition-colors" do %>
-              <span class="material-symbols-outlined size-5 text-[#60c2a6]">dashboard</span>
-              <span>Dashboard</span>
-            <% end %>
-
-            <%= link_to dashboard_printers_path, class: "flex gap-3 px-4 py-3 text-white bg-slate-800/60 rounded-xl font-medium group transition-colors" do %>
-              <span class="material-symbols-outlined size-5 text-[#60c2a6]">3d</span>
-              <span>Impressoras</span>
-            <% end %>
-          </nav>
+          <span class="text-base font-semibold tracking-tight">Print & Organize</span>
         </div>
 
-        <div class="p-4 border-t border-slate-800">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <div
-                class="
-                  size-9 bg-slate-800 rounded-full flex items-center justify-center text-white
-                  font-semibold text-sm border border-slate-700
-                "
-              >
+        <nav class="flex flex-1 flex-col gap-6 overflow-y-auto px-3 py-6">
+          <div class="flex flex-col gap-1">
+            <p class="px-3 pb-1 text-xs font-medium uppercase tracking-wider text-muted-foreground/70">Geral</p>
+            <%= link_to dashboard_home_path, class: "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors bg-primary/15 text-primary" do %>
+              <span class="material-symbols-outlined">
+                dashboard
+              </span>
+              Dashboard
+            <% end %>
+
+            <%= link_to dashboard_printers_path, class: "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors text-muted-foreground hover:bg-secondary hover:text-foreground" do %>
+              <span class="material-symbols-outlined">
+                print
+              </span>
+              Impressoras
+            <% end %>
+
+            <%= link_to dashboard_filaments_path, class: "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors text-muted-foreground hover:bg-secondary hover:text-foreground" do %>
+              <span class="material-symbols-outlined">
+                line_end
+              </span>
+              Filamentos
+            <% end %>
+
+          </div>
+          <div class="flex flex-col gap-1">
+            <p class="px-3 pb-1 text-xs font-medium uppercase tracking-wider text-muted-foreground/70">Conta</p>
+          </div>
+        </nav>
+
+        <div class="border-t border-border p-3">
+          <div class="flex items-center gap-3 rounded-lg px-3 py-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-secondary text-xs font-semibold">
                 <%= begin
                   current_user.email_address.first.upcase
                 rescue StandardError
                   "U"
                 end %>
-              </div>
-              <div class="truncate max-w-[120px]">
-                <p class="text-sm font-medium text-white truncate"><%= begin
+            </span>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium">
+                <%= begin
                     current_user.email_address
                   rescue StandardError
                     "Usuário"
-                  end %></p>
-              </div>
+                end %>
+              </p>
+              <p class="truncate text-xs text-muted-foreground">Plano Free</p>
             </div>
-            <%= button_to session_path, method: :delete, class: "flex items-center text-slate-500 hover:text-red-400 p-1.5 rounded-lg hover:bg-slate-800 transition-colors" do %>
+
+            <%= button_to session_path, method: :delete, class: "flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground" do %>
               <span class="material-symbols-outlined">logout</span>
             <% end %>
           </div>
         </div>
       </aside>
 
-      <div
-        class="fixed inset-0 z-30 bg-slate-900/40 backdrop-blur-sm hidden"
-        data-sidebar-target="overlay"
-        data-action="click->sidebar#toggle"
-      ></div>
-
-      <div class="flex-1 flex flex-col min-w-0">
-        <header
-          class="
-            h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4
-            sm:px-6 sticky top-0 z-20
-          "
-        >
-          <div class="flex items-center gap-4">
-            <button
-              type="button"
-              class="
-                lg:hidden p-2 text-slate-500 hover:bg-slate-100 rounded-xl transition-colors
-              "
-              data-action="sidebar#toggle"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="size-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-            <h2 class="text-xl font-bold text-slate-900 tracking-tight">Gerenciamento do Lab</h2>
+      <div class="flex min-w-0 flex-1 flex-col">
+        <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border bg-background/80 px-4 backdrop-blur-md sm:px-8"><h1 class="text-lg font-semibold tracking-tight">Gerenciamento do Lab</h1><div class="flex items-center gap-3"><span class="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-xs font-medium text-primary"><span class="relative flex h-2 w-2"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-primary"></span></span>Status: Online</span><button type="button" aria-label="Notificações" class="relative flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bell h-4 w-4" aria-hidden="true"><path d="M10.268 21a2 2 0 0 0 3.464 0"></path><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"></path></svg><span class="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-primary"></span></button></div></header>
+        <main class="flex-1 px-4 py-8 sm:px-8">
+          <div class="mx-auto max-w-6xl">
+            <%= yield %>
           </div>
-
-          <div class="flex items-center gap-4">
-            <span
-              class="
-                text-xs font-semibold px-2.5 py-1 bg-[#60c2a6]/10 text-[#4eb094] rounded-full
-                hidden sm:inline-block
-              "
-            >Status: Online</span>
-          </div>
-        </header>
-        <main class="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
-          <%= yield %>
         </main>
       </div>
     </div>
