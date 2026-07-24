@@ -14,7 +14,8 @@ class Dashboard::FilamentsController < DashboardController
   def create
     @filament = current_user.filaments.new(filament_params)
     if @filament.save
-      redirect_to dashboard_filaments_path, notice: "Filamento cadastrado com sucesso"
+      flash[:success] = "Filamento cadastrado com sucesso"
+      redirect_to dashboard_filaments_path
     else
       flash[:error] = "Verifique os campos em vermelho!"
       render :new, status: :unprocessable_entity
@@ -25,7 +26,8 @@ class Dashboard::FilamentsController < DashboardController
 
   def update
     if @filament.update(filament_params)
-      redirect_to dashboard_filaments_path, notice: "Filamento atualizado com sucesso"
+      flash[:success] = "Filamento atualizado com sucesso"
+      redirect_to dashboard_filaments_path
     else
       flash[:error] = "Verifique os campos em vermelho!"
       render :edit, status: :unprocessable_entity
@@ -34,7 +36,8 @@ class Dashboard::FilamentsController < DashboardController
 
   def destroy
     @filament.destroy
-    redirect_to dashboard_filaments_path, notice: "Filamento excluído com sucesso"
+    flash[:success] = "Filamento excluído com sucesso"
+    redirect_to dashboard_filaments_path
   end
 
   private

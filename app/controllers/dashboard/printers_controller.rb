@@ -15,7 +15,8 @@ class Dashboard::PrintersController < DashboardController
     @printer = Printer.new(printer_params)
     @printer.user = current_user
     if @printer.save
-      redirect_to dashboard_printers_path, notice: "Impressora criada com sucesso"
+      flash[:success] = "Impressora criada com sucesso"
+      redirect_to dashboard_printers_path
     else
       flash[:error] = "Verifique os campos em vermelho!"
       render :new, status: :unprocessable_entity
@@ -26,7 +27,8 @@ class Dashboard::PrintersController < DashboardController
 
   def update
     if @printer.update(printer_params)
-      redirect_to dashboard_printers_path, notice: "Impressora atualizada"
+      flash[:success] = "Impressora atualizada com sucesso"
+      redirect_to dashboard_printers_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -34,7 +36,8 @@ class Dashboard::PrintersController < DashboardController
 
   def destroy
     @printer.destroy
-    redirect_to dashboard_printers_path, notice: "Impressora excluída"
+    flash[:success] = "Impressora excluída com sucesso"
+    redirect_to dashboard_printers_path
   end
 
   private

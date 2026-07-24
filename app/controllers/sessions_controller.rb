@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
       start_new_session_for user
       redirect_to after_authentication_url
     else
-      redirect_to new_session_path, alert: "E-mail ou senha incorretos."
+      flash[:error] = "E-mail ou senha incorretos."
+      render :new, status: :unprocessable_entity
     end
   end
 

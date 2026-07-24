@@ -1,19 +1,37 @@
+# app/helpers/application_helper.rb
 module ApplicationHelper
-  def flash_class_for(type)
-    {
-      notice:  "border-indigo-100 bg-white/90 dark:bg-slate-900/90 text-indigo-600 dark:text-indigo-400 shadow-indigo-500/10",
-      alert:   "border-amber-100 bg-white/90 dark:bg-slate-900/90 text-amber-600 dark:text-amber-400 shadow-amber-500/10",
-      error:   "border-red-100 bg-white/90 dark:bg-slate-900/90 text-red-600 dark:text-red-400 shadow-red-500/10",
-      success: "border-emerald-100 bg-white/90 dark:bg-slate-900/90 text-[#60c2a6] dark:text-emerald-400 shadow-emerald-500/10"
-    }.fetch(type.to_sym, "border-slate-100 bg-white/90 text-slate-600")
+  # Mapeia o tipo de flash do Rails para as variações aceitas pelo Toast
+  def toast_variant_for(type)
+    case type.to_sym
+    when :notice, :info then :info
+    when :alert, :warning then :warning
+    when :error, :danger then :error
+    when :success then :success
+    else :default
+    end
   end
 
-  def flash_icon_for(type)
+  # Estilo de cor focado EXCLUSIVAMENTE no ícone (assim como no React)
+  def toast_icon_style_for(type)
+    variant = toast_variant_for(type)
+
     {
-      notice:  "info",
-      alert:   "warning",
-      error:   "dangerous",
-      success: "check_circle"
-    }.fetch(type.to_sym, "notifications")
+      success: "text-primary",
+      error:   "text-destructive",
+      warning: "text-amber-400 dark:text-amber-300",
+      info:    "text-sky-500 dark:text-sky-400"
+    }[variant]
+  end
+
+  # Ícone do Material Symbols equivalente ao Lucide do React
+  def toast_icon_name_for(type)
+    variant = toast_variant_for(type)
+
+    {
+      success: "check_circle",
+      error:   "cancel",
+      warning: "warning",
+      info:    "info"
+    }[variant]
   end
 end
