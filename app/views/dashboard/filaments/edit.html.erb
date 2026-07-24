@@ -2,23 +2,17 @@
   <%= render "shared/flash" %>
 </turbo-frame>
 
-<div class="min-h-screen bg-slate-50 flex">
-  <div class="flex-1 flex flex-col min-w-0">
-    <main class="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto max-w-3xl mx-auto w-full">
-      <div class="mb-8">
-        <%= link_to dashboard_filaments_path, class: "inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-800 transition-colors mb-3" do %>
-          <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
-          Voltar para lista
-        <% end %>
-        <h1 class="text-2xl font-bold text-slate-900 tracking-tight sm:text-3xl">Editar Filamento</h1>
-        <p class="text-slate-500 mt-1 text-sm">Atualize os dados e especificações do filamento.</p>
-      </div>
-
-      <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 sm:p-8">
-        <%= render "form", filament: @filament %>
-      </div>
-    </main>
+<div class="mx-auto max-w-2xl">
+  <%= link_to dashboard_filaments_path, class: "inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground" do%>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left h-4 w-4" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+    Voltar
+  <%end%>
+  <div class="mt-4">
+    <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">
+      Editar filamento
+    </h2>
+    <p class="mt-1 text-muted-foreground">Preencha os dados do filamento.</p>
   </div>
+
+  <%= render "form", filament: @filament %>
 </div>

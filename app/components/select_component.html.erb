@@ -1,0 +1,11 @@
+<% if @form && @attribute %>
+  <%= @form.select(@attribute, @collection, select_options, **html_options) %>
+<% else %>
+  <%= select_tag(@attribute, options_for_select(@collection), **html_options) %>
+<% end %>
+
+<% if has_errors? %>
+  <p class="text-sm text-destructive mt-1">
+    <%= error_message %>
+  </p>
+<% end %>
