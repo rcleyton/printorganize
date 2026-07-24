@@ -3,41 +3,98 @@
   <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
     <div class="flex flex-col gap-2 sm:col-span-2">
       <%= render(LabelComponent.new(form: f, attribute: :printer_name)) %>
-      <%= render(InputComponent.new(form: f, attribute: :printer_name, placeholder: "Ex: Ender 3 Esquerda, Bambu Principal" )) %>
+      <%= render(
+        InputComponent.new(
+          form: f,
+          attribute: :printer_name,
+          placeholder: "Ex: Ender 3 Esquerda, Bambu Principal",
+        ),
+      ) %>
     </div>
     <div class="flex flex-col gap-2">
       <%= render(LabelComponent.new(form: f, attribute: :printer_brand)) %>
-      <%= render(InputComponent.new(form: f, attribute: :printer_brand, placeholder: "Ex: Creality, Prusa, Bambu Lab")) %>
+      <%= render(
+        InputComponent.new(
+          form: f,
+          attribute: :printer_brand,
+          placeholder: "Ex: Creality, Prusa, Bambu Lab",
+        ),
+      ) %>
     </div>
     <div class="flex flex-col gap-2">
       <%= render(LabelComponent.new(form: f, attribute: :printer_model)) %>
-      <%= render(InputComponent.new(form: f, attribute: :printer_model, placeholder: "Ex: Ender 3 S1 Pro, MK4")) %>
+      <%= render(
+        InputComponent.new(
+          form: f,
+          attribute: :printer_model,
+          placeholder: "Ex: Ender 3 S1 Pro, MK4",
+        ),
+      ) %>
     </div>
     <div class="flex flex-col gap-2">
       <%= render(LabelComponent.new(form: f, attribute: :printer_ip)) %>
-      <%= render(InputComponent.new(form: f, attribute: :printer_ip, placeholder: "Ex: 192.168.1.155")) %>
+      <%= render(
+        InputComponent.new(
+          form: f,
+          attribute: :printer_ip,
+          placeholder: "Ex: 192.168.1.155",
+        ),
+      ) %>
     </div>
     <div class="flex flex-col gap-2">
       <%= render(LabelComponent.new(form: f, attribute: :kilowatt_hour)) %>
-      <%= render(InputComponent.new(form: f, attribute: :kilowatt_hour, placeholder: "Ex: 0.35")) %>
+      <%= render(
+        InputComponent.new(
+          form: f,
+          attribute: :kilowatt_hour,
+          placeholder: "Ex: 0.35",
+        ),
+      ) %>
     </div>
     <div class="flex flex-col gap-2 sm:col-span-2">
       <%= render(LabelComponent.new(form: f, attribute: :serial)) %>
-      <%= render(InputComponent.new(form: f, attribute: :serial, placeholder: "Ex.: CR-E3V3-2024-00871")) %>
+      <%= render(
+        InputComponent.new(
+          form: f,
+          attribute: :serial,
+          placeholder: "Ex.: CR-E3V3-2024-00871",
+        ),
+      ) %>
     </div>
     <div class="flex flex-col gap-2 sm:col-span-2">
       <%= render(LabelComponent.new(form: f, attribute: :access_code)) %>
-      <%= render(InputComponent.new(form: f, attribute: :access_code, placeholder: "Ex: a9b34b21-8038-4f21-9619-d92d3f237d4e")) %>
+      <%= render(
+        InputComponent.new(
+          form: f,
+          attribute: :access_code,
+          placeholder: "Ex: a9b34b21-8038-4f21-9619-d92d3f237d4e",
+        ),
+      ) %>
       <p class="text-xs text-muted-foreground">Usada para conectar a impressora à plataforma. Mantenha em sigilo.</p>
     </div>
   </div>
 
-
   <div class="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
-    <%= link_to "Cancelar", dashboard_printers_path, class:
+    <%= link_to "Cancelar",
+    dashboard_printers_path,
+    class:
       "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-secondary text-secondary-foreground hover:bg-secondary/80 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2" %>
     <%= f.submit class: "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground [a]:hover:bg-primary/80 h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2" do %>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-save h-4 w-4" aria-hidden="true"><path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path><path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"></path><path d="M7 3v4a1 1 0 0 0 1 1h7"></path></svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-save h-4 w-4"
+        aria-hidden="true"
+      ><path
+          d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"
+        ></path><path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"></path><path d="M7 3v4a1 1 0 0 0 1 1h7"></path></svg>
     <% end %>
   </div>
 <% end %>

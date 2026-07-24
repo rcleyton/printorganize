@@ -33,9 +33,18 @@
 
   <body>
     <div class="flex min-h-screen bg-background">
-      <aside class="hidden w-64 shrink-0 flex-col border-r border-border bg-card/40 md:flex">
+      <aside
+        class="
+          hidden w-64 shrink-0 flex-col border-r border-border bg-card/40 md:flex
+        "
+      >
         <div class="flex h-16 items-center gap-2 border-b border-border px-6">
-          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+          <div
+            class="
+              flex h-8 w-8 items-center justify-center rounded-lg bg-primary
+              text-primary-foreground
+            "
+          >
             <%= image_tag "3d-printer.png", class: "h-5 w-5" %>
           </div>
           <span class="text-base font-semibold tracking-tight">Print & Organize</span>
@@ -43,7 +52,11 @@
 
         <nav class="flex flex-1 flex-col gap-6 overflow-y-auto px-3 py-6">
           <div class="flex flex-col gap-1">
-            <p class="px-3 pb-1 text-xs font-medium uppercase tracking-wider text-muted-foreground/70">Geral</p>
+            <p
+              class="
+                px-3 pb-1 text-xs font-medium uppercase tracking-wider text-muted-foreground/70
+              "
+            >Geral</p>
             <%= link_to dashboard_home_path, class: "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors bg-primary/15 text-primary" do %>
               <span class="material-symbols-outlined">
                 dashboard
@@ -52,40 +65,87 @@
             <% end %>
 
             <%= link_to dashboard_printers_path, class: "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors text-muted-foreground hover:bg-secondary hover:text-foreground" do %>
-              <span class="material-symbols-outlined">
-                print
-              </span>
+              <svg
+                class="w-5 h-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+
+                <line x1="4" y1="3" x2="4" y2="20"/>
+                <line x1="20" y1="3" x2="20" y2="20"/>
+                <line x1="4" y1="3" x2="20" y2="3"/>
+
+                <line x1="2" y1="21" x2="22" y2="21"/>
+                <line x1="4" y1="20" x2="2" y2="21"/>
+                <line x1="20" y1="20" x2="22" y2="21"/>
+
+                <rect x="9" y="8" width="6" height="4" rx="1"/>
+                <path d="M11 12 L12 15 L13 12"/>
+
+                <rect x="9" y="16" width="6" height="5" rx=".5"/>
+                <line x1="9" y1="18.5" x2="15" y2="18.5"/>
+
+              </svg>
               Impressoras
             <% end %>
 
             <%= link_to dashboard_filaments_path, class: "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors text-muted-foreground hover:bg-secondary hover:text-foreground" do %>
-              <span class="material-symbols-outlined">
-                line_end
-              </span>
+              <svg
+                class="w-5 h-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <!-- Outer flange — side disc of spool -->
+                <circle cx="12" cy="12" r="9"/>
+                <!-- Outer edge of wound filament — loaded spool -->
+                <circle cx="12" cy="12" r="5.5"/>
+                <!-- Center axle bore — for spool holder -->
+                <circle cx="12" cy="12" r="2"/>
+                <!-- Filament tail exiting tangentially -->
+                <path d="M17.5 5 Q19.5 3.5 21 2"/>
+
+              </svg>
               Filamentos
             <% end %>
 
           </div>
           <div class="flex flex-col gap-1">
-            <p class="px-3 pb-1 text-xs font-medium uppercase tracking-wider text-muted-foreground/70">Conta</p>
+            <p
+              class="
+                px-3 pb-1 text-xs font-medium uppercase tracking-wider text-muted-foreground/70
+              "
+            >Conta</p>
           </div>
         </nav>
 
         <div class="border-t border-border p-3">
           <div class="flex items-center gap-3 rounded-lg px-3 py-2">
-            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-secondary text-xs font-semibold">
-                <%= begin
-                  current_user.email_address.first.upcase
-                rescue StandardError
-                  "U"
-                end %>
+            <span
+              class="
+                flex h-8 w-8 items-center justify-center rounded-full bg-secondary text-xs
+                font-semibold
+              "
+            >
+              <%= begin
+                current_user.email_address.first.upcase
+              rescue StandardError
+                "U"
+              end %>
             </span>
             <div class="min-w-0 flex-1">
               <p class="truncate text-sm font-medium">
                 <%= begin
-                    current_user.email_address
-                  rescue StandardError
-                    "Usuário"
+                  current_user.email_address
+                rescue StandardError
+                  "Usuário"
                 end %>
               </p>
               <p class="truncate text-xs text-muted-foreground">Plano Free</p>
@@ -99,7 +159,44 @@
       </aside>
 
       <div class="flex min-w-0 flex-1 flex-col">
-        <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border bg-background/80 px-4 backdrop-blur-md sm:px-8"><h1 class="text-lg font-semibold tracking-tight">Gerenciamento do Lab</h1><div class="flex items-center gap-3"><span class="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-xs font-medium text-primary"><span class="relative flex h-2 w-2"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-primary"></span></span>Status: Online</span><button type="button" aria-label="Notificações" class="relative flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bell h-4 w-4" aria-hidden="true"><path d="M10.268 21a2 2 0 0 0 3.464 0"></path><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"></path></svg><span class="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-primary"></span></button></div></header>
+        <header
+          class="
+            sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border
+            bg-background/80 px-4 backdrop-blur-md sm:px-8
+          "
+        ><h1 class="text-lg font-semibold tracking-tight">Gerenciamento do Lab</h1><div class="flex items-center gap-3"><span
+              class="
+                inline-flex items-center gap-2 rounded-full border border-primary/25
+                bg-primary/10 px-3 py-1 text-xs font-medium text-primary
+              "
+            ><span class="relative flex h-2 w-2"><span
+                  class="
+                    absolute inline-flex h-full w-full animate-ping rounded-full bg-primary
+                    opacity-60
+                  "
+                ></span><span class="relative inline-flex h-2 w-2 rounded-full bg-primary"></span></span>Status: Online</span><button
+              type="button"
+              aria-label="Notificações"
+              class="
+                relative flex h-9 w-9 items-center justify-center rounded-lg border
+                border-border text-muted-foreground transition-colors hover:bg-secondary
+                hover:text-foreground
+              "
+            ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-bell h-4 w-4"
+                aria-hidden="true"
+              ><path d="M10.268 21a2 2 0 0 0 3.464 0"></path><path
+                  d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"
+                ></path></svg><span class="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-primary"></span></button></div></header>
         <main class="flex-1 px-4 py-8 sm:px-8">
           <div class="mx-auto max-w-6xl">
             <%= yield %>
