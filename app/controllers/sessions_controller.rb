@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
   def create
     if user = User.authenticate_by(params.permit(:email_address, :password))
       start_new_session_for user
+      flash[:success] = "Login realizado com sucesso!"
       redirect_to after_authentication_url
     else
       flash[:error] = "E-mail ou senha incorretos."

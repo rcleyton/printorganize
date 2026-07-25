@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_07_22_162028) do
+ActiveRecord::Schema[8.0].define(version: 2026_07_24_213011) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -42,6 +42,19 @@ ActiveRecord::Schema[8.0].define(version: 2026_07_22_162028) do
     t.index ["user_id"], name: "index_printers_on_user_id"
   end
 
+  create_table "products", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", null: false
+    t.string "category", null: false
+    t.decimal "material_weight", precision: 10, scale: 2, null: false
+    t.integer "production_time_seconds", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_products_on_user_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "ip_address"
@@ -61,5 +74,6 @@ ActiveRecord::Schema[8.0].define(version: 2026_07_22_162028) do
 
   add_foreign_key "filaments", "users"
   add_foreign_key "printers", "users"
+  add_foreign_key "products", "users"
   add_foreign_key "sessions", "users"
 end
