@@ -8,4 +8,15 @@ class Product < ApplicationRecord
 
 
   enum :status, { active: 0, inactive: 1 }
+
+  scope :available, -> { active }
+  scope :archived,  -> { inactive }
+
+  private
+
+  def product_must_be_active
+    return if product.active?
+
+    errors.add(:product, "deve estar ativo")
+  end
 end
