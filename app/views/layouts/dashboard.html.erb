@@ -35,7 +35,7 @@
     <turbo-frame id="flash">
       <%= render "shared/flash" %>
     </turbo-frame>
-    
+
     <div class="flex min-h-screen bg-background">
       <aside
         class="
@@ -62,9 +62,20 @@
               "
             >Geral</p>
             <%= link_to dashboard_home_path, class: "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors bg-primary/15 text-primary" do %>
-              <span class="material-symbols-outlined">
-                dashboard
-              </span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="
+                  lucide lucide-layout-dashboard-icon lucide-layout-dashboard w-5 h-5
+                "
+              ><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
               Dashboard
             <% end %>
 
@@ -120,6 +131,23 @@
               Filamentos
             <% end %>
 
+            <%= link_to dashboard_products_path, class: "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors text-muted-foreground hover:bg-secondary hover:text-foreground" do %>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-package-icon lucide-package w-5 h-5"
+              ><path
+                  d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"
+                /><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></svg>
+              Produtos
+            <% end %>
           </div>
           <div class="flex flex-col gap-1">
             <p
